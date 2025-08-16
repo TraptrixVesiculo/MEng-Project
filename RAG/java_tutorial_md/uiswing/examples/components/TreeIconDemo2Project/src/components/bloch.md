@@ -1,0 +1,3 @@
+# Effective Java Programming Language Guide
+
+blah, blah, blah, blah, blah...

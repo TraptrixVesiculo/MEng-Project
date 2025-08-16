@@ -1,0 +1,107 @@
+[Download
+the JDK](http://java.sun.com/javase/6/download.jsp)
+  
+[Search the
+Tutorials](../../search.html)
+  
+[Hide the TOC](javascript:toggleLeft())
+
+**Trail:** Creating a GUI With JFC/Swing
+  
+**Lesson:** Performing Custom Painting
+
+[Performing Custom Painting](index.html)
+
+[Creating the Demo Application (Step 1)](step1.html)
+
+[Creating the Demo Application (Step 2)](step2.html)
+
+[Creating the Demo Application (Step 3)](step3.html)
+
+[Refining the Design](refining.html)
+
+[A Closer Look at the Paint Mechanism](closer.html)
+
+Summary
+
+[Solving Common Painting Problems](problems.html)
+
+[Home Page](../../index.html)
+>
+[Creating a GUI With JFC/Swing](../index.html)
+>
+[Performing Custom Painting](index.html)
+
+[« Previous](closer.html) • [Trail](../TOC.html) • [Next »](problems.html)
+
+# Summary
+
+* In Swing, painting begins with the `paint` method,
+  which then invokes `paintComponent`, `paintBorder`, and
+  `paintChildren`. The system will invoke this automatically when a component is first painted, is resized, or becomes exposed after being hidden by another window.
+
+  * Programatic repaints are accomplished by invoking a component's `repaint` method; do *not* invoke its `paintComponent` directly.
+    Invoking `repaint` causes the painting subsystem to take the necessary steps
+    to ensure that your `paintComponent` method is invoked at an
+    appropriate time.
+
+  * The multi-arg version of `repaint` allows you to shrink the component's *clip rectangle* (the section of the screen that is affected by painting operations) so that painting can become more efficient. We utilized this technique in the `moveSquare` method to avoid repainting sections of the
+    screen that have not changed. There is also a no-arg version of this method
+    that will repaint the component's entire surface area.
+
+  * Because we have shrunk the clip rectangle, our `moveSquare`
+    method invokes `repaint` not once, but twice.
+    The first invocation repaints the area of the component where the square *previously* was
+    (the inherited behavior is to fill the area with the current background color.)
+    The second invocation paints the area of the component where the square *currently* is.
+
+    * You can invoke `repaint` multiple times from within the same event handler, but Swing will take that information and repaint the component in just one
+      operation.
+
+      * For components with a UI Delegate, you should pass the `Graphics` paramater with the line `super.paintComponent(g)` as the first line of code in your `paintComponent` override. If you do not, then your component will be responsible for manually painting its background. You can experiment with this by commenting out that line and recompiling to see that the background is no longer painted.
+
+        * By factoring out our new code into a separate `RedSquare` class, the application
+          maintains an object-oriented design, which keeps the
+          `paintComponent` method of the `MyPanel` class free of clutter.
+          Painting still
+          works because we have passed the `Graphics` object off to the red square by invoking its
+          `paintSquare(Graphics g)` method. Keep in mind that the name of this method is one that
+          we have created
+          from scratch; we are
+          not overriding `paintSquare` from anywhere higher up in the Swing
+          API.
+
+[« Previous](closer.html)
+•
+[Trail](../TOC.html)
+•
+[Next »](problems.html)
+
+---
+
+Problems with the examples? Try [Compiling and Running
+the Examples: FAQs](../../information/run-examples.html).
+  
+Complaints? Compliments? Suggestions? [Give
+us your feedback](http://download.oracle.com/javase/feedback.html).
+
+Your use of this page and all the material on pages under "The Java Tutorials" banner,
+and all the material on pages under "The Java Tutorials" banner is subject to the [Java SE Tutorial Copyright
+and License](../../information/license.html).
+Additionally, any example code contained in any of these Java
+Tutorials pages is licensed under the
+[Code
+Sample License](http://developers.sun.com/license/berkeley_license.html).
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| |  |  | | --- | --- | | duke image | Oracle logo | | [About Oracle](http://www.oracle.com/us/corporate/index.html) | [Oracle Technology Network](http://www.oracle.com/technology/index.html) | [Terms of Service](https://www.samplecode.oracle.com/servlets/CompulsoryClickThrough?type=TermsOfService) | Copyright © 1995, 2011 Oracle and/or its affiliates. All rights reserved. |
+
+**Previous page:** A Closer Look at the Paint Mechanism
+  
+**Next page:** Solving Common Painting Problems
+
+
+
+
+A browser with JavaScript enabled is required for this page to operate properly.

@@ -1,0 +1,214 @@
+[Download
+the JDK](http://java.sun.com/javase/6/download.jsp)
+  
+[Search the
+Tutorials](../../search.html)
+  
+[Hide the TOC](javascript:toggleLeft())
+
+**Trail:** Essential Classes
+  
+**Lesson:** Concurrency
+  
+**Section:** Thread Objects
+
+[Concurrency](index.html)
+
+[Processes and Threads](procthread.html)
+
+[Thread Objects](threads.html)
+
+[Defining and Starting a Thread](runthread.html)
+
+[Pausing Execution with Sleep](sleep.html)
+
+Interrupts
+
+[Joins](join.html)
+
+[The SimpleThreads Example](simple.html)
+
+[Synchronization](sync.html)
+
+[Thread Interference](interfere.html)
+
+[Memory Consistency Errors](memconsist.html)
+
+[Synchronized Methods](syncmeth.html)
+
+[Intrinsic Locks and Synchronization](locksync.html)
+
+[Atomic Access](atomic.html)
+
+[Liveness](liveness.html)
+
+[Deadlock](deadlock.html)
+
+[Starvation and Livelock](starvelive.html)
+
+[Guarded Blocks](guardmeth.html)
+
+[Immutable Objects](immutable.html)
+
+[A Synchronized Class Example](syncrgb.html)
+
+[A Strategy for Defining Immutable Objects](imstrat.html)
+
+[High Level Concurrency Objects](highlevel.html)
+
+[Lock Objects](newlocks.html)
+
+[Executors](executors.html)
+
+[Executor Interfaces](exinter.html)
+
+[Thread Pools](pools.html)
+
+[Fork/Join](forkjoin.html)
+
+[Concurrent Collections](collections.html)
+
+[Atomic Variables](atomicvars.html)
+
+[Concurrent Random Numbers](threadlocalrandom.html)
+
+[For Further Reading](further.html)
+
+[Questions and Exercises](QandE/questions.html)
+
+[Home Page](../../index.html)
+>
+[Essential Classes](../index.html)
+>
+[Concurrency](index.html)
+
+[« Previous](sleep.html) • [Trail](../TOC.html) • [Next »](join.html)
+
+# Interrupts
+
+An *interrupt* is an indication to a thread that it should stop what
+it is doing and do something else. It's up to the programmer to
+decide exactly how a thread responds to an interrupt, but it is very
+common for the thread to terminate. This is the usage emphasized in
+this lesson.
+
+A thread sends an interrupt by invoking
+[`interrupt`](http://download.oracle.com/javase/7/docs/api/java/lang/Thread.html#interrupt())
+on the `Thread` object for the thread to be interrupted.
+For the interrupt mechanism to work correctly, the interrupted thread
+must support its own interruption.
+
+### Supporting Interruption
+
+How does a thread support its own interruption? This depends on
+what it's currently doing. If the thread is frequently invoking
+methods that throw `InterruptedException`, it simply
+returns from the `run` method after it catches that
+exception. For example, suppose the central message loop in the
+`SleepMessages` example were in the `run` method
+of a thread's `Runnable` object. Then it might be modified
+as follows to support interrupts:
+
+```
+
+for (int i = 0; i < importantInfo.length; i++) {
+    //Pause for 4 seconds
+    try {
+        Thread.sleep(4000);
+    } catch (InterruptedException e) {
+        //We've been interrupted: no more messages.
+        return;
+    }
+    //Print a message
+    System.out.println(importantInfo[i]);
+}
+
+```
+
+Many methods that throw `InterruptedException`, such as
+`sleep`, are designed to cancel their current operation and
+return immediately when an interrupt is received.
+
+What if a thread goes a long time without invoking a method that
+throws `InterruptedException`? Then it must periodically
+invoke `Thread.interrupted`, which returns
+`true` if an interrupt has been received. For example:
+
+```
+
+for (int i = 0; i < inputs.length; i++) {
+    heavyCrunch(inputs[i]);
+    if (Thread.interrupted()) {
+        //We've been interrupted: no more crunching.
+        return;
+    }
+}
+
+```
+
+In this simple example, the code simply tests for the interrupt and
+exits the thread if one has been received. In more complex
+applications, it might make more sense to throw an
+`InterruptedException`:
+
+```
+
+if (Thread.interrupted()) {
+    throw new InterruptedException();
+}
+
+```
+
+This allows interrupt handling code to be centralized in a
+`catch` clause.
+
+### The Interrupt Status Flag
+
+The interrupt mechanism is implemented using an internal flag known as
+the *interrupt status*. Invoking `Thread.interrupt`
+sets this flag. When a thread checks for an interrupt by invoking the
+static method `Thread.interrupted`, interrupt status is
+cleared. The non-static `isInterrupted` method, which is
+used by one thread to query the interrupt status of another, does not
+change the interrupt status flag.
+
+By convention, any method that exits by throwing an
+`InterruptedException` clears interrupt status when it does
+so. However, it's always possible that interrupt status will
+immediately be set again, by another thread invoking
+`interrupt`.
+
+[« Previous](sleep.html)
+•
+[Trail](../TOC.html)
+•
+[Next »](join.html)
+
+---
+
+Problems with the examples? Try [Compiling and Running
+the Examples: FAQs](../../information/run-examples.html).
+  
+Complaints? Compliments? Suggestions? [Give
+us your feedback](http://download.oracle.com/javase/feedback.html).
+
+Your use of this page and all the material on pages under "The Java Tutorials" banner,
+and all the material on pages under "The Java Tutorials" banner is subject to the [Java SE Tutorial Copyright
+and License](../../information/license.html).
+Additionally, any example code contained in any of these Java
+Tutorials pages is licensed under the
+[Code
+Sample License](http://developers.sun.com/license/berkeley_license.html).
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| |  |  | | --- | --- | | duke image | Oracle logo | | [About Oracle](http://www.oracle.com/us/corporate/index.html) | [Oracle Technology Network](http://www.oracle.com/technology/index.html) | [Terms of Service](https://www.samplecode.oracle.com/servlets/CompulsoryClickThrough?type=TermsOfService) | Copyright © 1995, 2011 Oracle and/or its affiliates. All rights reserved. |
+
+**Previous page:** Pausing Execution with Sleep
+  
+**Next page:** Joins
+
+
+
+
+A browser with JavaScript enabled is required for this page to operate properly.

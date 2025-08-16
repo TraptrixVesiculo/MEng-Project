@@ -1,0 +1,129 @@
+[Download
+the JDK](http://java.sun.com/javase/6/download.jsp)
+  
+[Search the
+Tutorials](../../../search.html)
+  
+[Hide the TOC](javascript:toggleLeft())
+
+**Trail:** Learning the Java Language
+  
+**Lesson:** Language Basics
+
+[Language Basics](../index.html)
+
+[Variables](../variables.html)
+
+[Primitive Data Types](../datatypes.html)
+
+[Arrays](../arrays.html)
+
+[Summary of Variables](../variablesummary.html)
+
+[Questions and Exercises](../QandE/questions_variables.html)
+
+[Operators](../operators.html)
+
+[Assignment, Arithmetic, and Unary Operators](../op1.html)
+
+[Equality, Relational, and Conditional Operators](../op2.html)
+
+[Bitwise and Bit Shift Operators](../op3.html)
+
+[Summary of Operators](../opsummary.html)
+
+[Questions and Exercises](../QandE/questions_operators.html)
+
+[Expressions, Statements, and Blocks](../expressions.html)
+
+Questions and Exercises
+
+[Control Flow Statements](../flow.html)
+
+[The if-then and if-then-else Statements](../if.html)
+
+[The switch Statement](../switch.html)
+
+[The while and do-while Statements](../while.html)
+
+[The for Statement](../for.html)
+
+[Branching Statements](../branch.html)
+
+[Summary of Control Flow Statements](../flowsummary.html)
+
+[Questions and Exercises](../QandE/questions_flow.html)
+
+[Home Page](../../../index.html)
+>
+[Learning the Java Language](../../index.html)
+>
+[Language Basics](../index.html)
+
+[« Previous](../expressions.html) • [Trail](../../TOC.html) • [Next »](../flow.html)
+
+# Questions and Exercises: Expressions, Statements, and Blocks
+
+### Questions
+
+> 1. Operators may be used in building \_\_\_, which compute values.
+>
+>    - Expressions are the core components of \_\_\_.
+>
+>      - Statements may be grouped into \_\_\_.
+>
+>        - The following code snippet is an example of a \_\_\_ expression.
+>
+>          ```
+>
+>           1 * 2 * 3
+>
+>          ```
+>
+>          - Statements are roughly equivalent to sentences in natural languages,
+>            but instead of ending with a period, a statement ends with a \_\_\_.
+>
+>            - A block is a group of zero or more statements between balanced \_\_\_ and can be used anywhere a single statement is allowed.
+
+### Exercises
+
+> Identify the following kinds of expression statements:
+>
+> * `aValue = 8933.234;`* `aValue++;`* `System.out.println("Hello World!");`* `Bicycle myBike = new Bicycle();`
+
+[Check your answers](answers_expressions.html)
+
+[« Previous](../expressions.html)
+•
+[Trail](../../TOC.html)
+•
+[Next »](../flow.html)
+
+---
+
+Problems with the examples? Try [Compiling and Running
+the Examples: FAQs](../../../information/run-examples.html).
+  
+Complaints? Compliments? Suggestions? [Give
+us your feedback](http://download.oracle.com/javase/feedback.html).
+
+Your use of this page and all the material on pages under "The Java Tutorials" banner,
+and all the material on pages under "The Java Tutorials" banner is subject to the [Java SE Tutorial Copyright
+and License](../../../information/license.html).
+Additionally, any example code contained in any of these Java
+Tutorials pages is licensed under the
+[Code
+Sample License](http://developers.sun.com/license/berkeley_license.html).
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| |  |  | | --- | --- | | duke image | Oracle logo | | [About Oracle](http://www.oracle.com/us/corporate/index.html) | [Oracle Technology Network](http://www.oracle.com/technology/index.html) | [Terms of Service](https://www.samplecode.oracle.com/servlets/CompulsoryClickThrough?type=TermsOfService) | Copyright © 1995, 2011 Oracle and/or its affiliates. All rights reserved. |
+
+**Previous page:** Expressions, Statements, and Blocks
+  
+**Next page:** Control Flow Statements
+
+
+
+
+A browser with JavaScript enabled is required for this page to operate properly.
